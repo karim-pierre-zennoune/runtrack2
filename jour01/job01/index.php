@@ -2,20 +2,21 @@
 <?php
 
 $str = "LaPlateforme";
-echo $str;
+$br = "<br/>";
+echo $str, $br;
 $str2 = "Vive";
 $str3 = "!";
-echo $str2, ' ', $str, ' ', $str3;
+echo $str2, ' ', $str, ' ', $str3, $br;
 
 $val = 6;
-echo $val;
+echo $val, $br;
 $val = $val + 4;
-echo $val;
+echo $val, $br;
 
 $MyBool = true;
-echo $MyBool;
+echo $MyBool, $br;
 $MyBool = false;
-echo $MyBool;
+echo $MyBool, $br;
 
 
 
