@@ -25,16 +25,11 @@ Après validation du formulaire :
             $hauteur = $_GET["hauteur"];
 
             if ($largeur > 0 && $hauteur > 0) {
-
                 make_roof($largeur, $hauteur);
                 make_house($largeur, $hauteur);
-
-
-
             } else {
                 echo "Wrong input, expecting 2 positive integers";
             }
-
         } else {
             echo "Wrong input, expecting 2 positive integers";
         } ?>
@@ -69,7 +64,6 @@ function make_house($largeur, $hauteur)
                 echo "_";
             } else {
                 echo " ";
-
             }
         }
         echo "<br/>";

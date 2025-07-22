@@ -9,8 +9,6 @@ if (isset($_GET["style"])): ?>
 <?php endif; ?>
 
 <body>
-
-
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get ">
         <label for="style">Choose a style:</label>
         <select id="style" name="style">
@@ -20,7 +18,6 @@ if (isset($_GET["style"])): ?>
         </select>
         <input type="submit">
     </form>
-
 </body>
 
 </html>
