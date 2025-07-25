@@ -23,7 +23,7 @@ Après validation du formulaire :
                 echo "C’est pas ma guerre";
             } else
                 echo "Votre pire cauchemar";
-        } ?>x
+        } ?>
     </div>
 </body>
 
