@@ -41,18 +41,18 @@ Après validation du formulaire :
 
 <?php
 
-function make_roof($largeur, $hauteur)
-{
-    for ($i = 0; $i < $hauteur; $i++):
-        for ($j = ($largeur / 2) - $i - 1; $j > 0; $j--):
-            echo " ";
-        endfor;
-        echo "/";
-        echo str_repeat("_", $i * 2);
-        echo "\\ <br/>";
+// function make_roof($largeur, $hauteur)
+// {
+//     for ($i = 0; $i < $hauteur; $i++):
+//         for ($j = ($largeur / 2) - $i - 1; $j > 0; $j--):
+//             echo " ";
+//         endfor;
+//         echo "/";
+//         echo str_repeat("_", $i * 2);
+//         echo "\\ <br/>";
 
-    endfor;
-}
+//     endfor;
+// }
 
 function make_house($largeur, $hauteur)
 {
@@ -69,6 +69,61 @@ function make_house($largeur, $hauteur)
         echo "<br/>";
     }
 }
+
+
+
+
+
+function make_roof($largeur, $hauteur)
+{
+    for ($i = 0; $i < $hauteur; $i++):
+
+        if ($largeur > $hauteur * 2) {
+
+            for ($l = 0; $l < ($largeur / 4 + $largeur % 4); $l++) {
+                if ($i === $hauteur - 1) {
+                    echo "_";
+                } else {
+
+                    echo " ";
+                }
+            }
+
+
+        }
+        for ($j = $hauteur - $i; $j > 1; $j--):
+            echo " ";
+        endfor;
+        echo "/";
+        for ($k = $i * 2; $k > 0; $k--):
+            // if ($i === $hauteur - 1):
+            echo "_";
+            // else:
+            //     echo " ";
+            // endif;
+        endfor;
+
+        echo "\\";
+        if ($largeur > $hauteur * 2) {
+            for ($l = 0; $l < ($largeur / 4 + $largeur % 4); $l++) {
+                if ($i === $hauteur - 1) {
+                    echo "_";
+                }
+                // else {
+
+                //     echo "9";
+                // }
+            }
+        }
+
+
+        echo "<br/>";
+    endfor;
+}
+
+
+
+
 
 
 
