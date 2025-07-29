@@ -12,45 +12,44 @@ permet également de réinitialiser la partie à tout moment. -->
 
 session_start();
 if (!isset($_SESSION["current-turn"])) {
-    $_SESSION["current-turn"] = "X";
-    $_SESSION["turn-count"] = 1;
+    $_SESSION["current-turn"] = "O";
 }
 
 if (isset($_GET["reset"])) {
     $_SESSION = [];
-    $_SESSION["current-turn"] = "X";
-    $_SESSION["turn-count"] = 1;
+    $_SESSION["current-turn"] = "O";
 }
 
-if (isset($_GET["a1"])) {
+$tile_list = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
+$turn_count = 0;
+
+if (isset($_GET["a1"]) && !isset($_SESSION["a1"])) {
     $_SESSION["a1"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["a2"])) {
+if (isset($_GET["a2"]) && !isset($_SESSION["a2"])) {
     $_SESSION["a2"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["a3"])) {
+if (isset($_GET["a3"]) && !isset($_SESSION["a3"])) {
     $_SESSION["a3"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["b1"])) {
+if (isset($_GET["b1"]) && !isset($_SESSION["b1"])) {
     $_SESSION["b1"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["b2"])) {
+if (isset($_GET["b2"]) && !isset($_SESSION["b2"])) {
     $_SESSION["b2"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["b3"])) {
+if (isset($_GET["b3"]) && !isset($_SESSION["b3"])) {
     $_SESSION["b3"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["c1"])) {
+if (isset($_GET["c1"]) && !isset($_SESSION["c1"])) {
     $_SESSION["c1"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["c2"])) {
+if (isset($_GET["c2"]) && !isset($_SESSION["c2"])) {
     $_SESSION["c2"] = $_SESSION["current-turn"];
 }
-if (isset($_GET["c3"])) {
+if (isset($_GET["c3"]) && !isset($_SESSION["c3"])) {
     $_SESSION["c3"] = $_SESSION["current-turn"];
 }
-
-
 
 if ($_SESSION["current-turn"] == "X") {
     $_SESSION["current-turn"] = "O";
@@ -58,83 +57,81 @@ if ($_SESSION["current-turn"] == "X") {
     $_SESSION["current-turn"] = "X";
 }
 
+foreach ($tile_list as $tile) {
+    if (isset($_SESSION[$tile])) {
+        $turn_count++;
+    }
+}
+
+$result = checkwin();
+
 function checkwin()
 {
-
     if (
+        isset($_SESSION["a1"]) && isset($_SESSION["a2"]) && isset($_SESSION["a3"]) &&
         $_SESSION["a1"] === $_SESSION["a2"] &&
-        $_SESSION["a1"] === $_SESSION["a3"] &&
-        $_SESSION["a2"] === $_SESSION["a3"]
+        $_SESSION["a1"] === $_SESSION["a3"]
     ) {
         return $_SESSION["a1"];
     }
 
-
     if (
+        isset($_SESSION["b1"]) && isset($_SESSION["b2"]) && isset($_SESSION["b3"]) &&
         $_SESSION["b1"] === $_SESSION["b2"] &&
-        $_SESSION["b1"] === $_SESSION["b3"] &&
-        $_SESSION["b2"] === $_SESSION["b3"]
+        $_SESSION["b1"] === $_SESSION["b3"]
     ) {
         return $_SESSION["b1"];
     }
 
     if (
+        isset($_SESSION["c1"]) && isset($_SESSION["c2"]) && isset($_SESSION["c3"]) &&
         $_SESSION["c1"] === $_SESSION["c2"] &&
-        $_SESSION["c1"] === $_SESSION["c3"] &&
-        $_SESSION["c2"] === $_SESSION["c3"]
+        $_SESSION["c1"] === $_SESSION["c3"]
     ) {
         return $_SESSION["c1"];
     }
 
-
-
     if (
+        isset($_SESSION["a1"]) && isset($_SESSION["b1"]) && isset($_SESSION["c1"]) &&
         $_SESSION["a1"] === $_SESSION["b1"] &&
-        $_SESSION["a1"] === $_SESSION["c1"] &&
-        $_SESSION["b1"] === $_SESSION["c1"]
+        $_SESSION["a1"] === $_SESSION["c1"]
     ) {
         return $_SESSION["a1"];
     }
 
-
     if (
+        isset($_SESSION["a2"]) && isset($_SESSION["b2"]) && isset($_SESSION["c2"]) &&
         $_SESSION["a2"] === $_SESSION["b2"] &&
-        $_SESSION["a2"] === $_SESSION["c2"] &&
-        $_SESSION["b2"] === $_SESSION["c2"]
+        $_SESSION["a2"] === $_SESSION["c2"]
     ) {
         return $_SESSION["a2"];
     }
 
-
     if (
+        isset($_SESSION["a3"]) && isset($_SESSION["b3"]) && isset($_SESSION["c3"]) &&
         $_SESSION["a3"] === $_SESSION["b3"] &&
-        $_SESSION["a3"] === $_SESSION["c3"] &&
-        $_SESSION["b3"] === $_SESSION["c3"]
+        $_SESSION["a3"] === $_SESSION["c3"]
     ) {
         return $_SESSION["a3"];
     }
 
-
     if (
+        isset($_SESSION["a1"]) && isset($_SESSION["b2"]) && isset($_SESSION["c3"]) &&
         $_SESSION["a1"] === $_SESSION["b2"] &&
-        $_SESSION["a1"] === $_SESSION["c3"] &&
-        $_SESSION["b2"] === $_SESSION["c3"]
+        $_SESSION["a1"] === $_SESSION["c3"]
     ) {
         return $_SESSION["a1"];
     }
 
-
-
     if (
+        isset($_SESSION["a3"]) && isset($_SESSION["b2"]) && isset($_SESSION["c1"]) &&
         $_SESSION["a3"] === $_SESSION["b2"] &&
-        $_SESSION["a3"] === $_SESSION["c1"] &&
-        $_SESSION["b2"] === $_SESSION["c1"]
+        $_SESSION["a3"] === $_SESSION["c1"]
     ) {
-        return $_SESSION["a1"];
+        return $_SESSION["a3"];
     }
 
     return null;
-
 }
 ?>
 
@@ -159,7 +156,6 @@ function checkwin()
 </head>
 
 <body>
-
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
         <table>
             <tr>
@@ -178,20 +174,21 @@ function checkwin()
                 <td><input type="submit" value="<?= isset($_SESSION["c3"]) ? $_SESSION["c3"] : "-" ?>" name="c3"></td>
             </tr>
         </table>
-
-        <input id="reset" type="submit" value="réinitialiser la partie">
+        <input id="reset" name="reset" type="submit" value="réinitialiser la partie">
     </form>
-
-
-    <?php
-
-
-    if (checkwin()) {
-
-    }
-
-    ?>
-
+    <p>
+        <?php
+        if ($result) {
+            echo $result . " a gagné";
+            $_SESSION = [];
+            $_SESSION["current-turn"] = "O";
+        } else if ($turn_count === 9) {
+            echo "Match nul";
+            $_SESSION = [];
+            $_SESSION["current-turn"] = "O";
+        }
+        ?>
+    </p>
 </body>
 
 </html>
