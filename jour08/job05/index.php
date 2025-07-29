@@ -12,52 +12,22 @@ permet également de réinitialiser la partie à tout moment. -->
 
 session_start();
 if (!isset($_SESSION["current-turn"])) {
-    $_SESSION["current-turn"] = "O";
+    $_SESSION["current-turn"] = "X";
 }
 
 if (isset($_GET["reset"])) {
     $_SESSION = [];
-    $_SESSION["current-turn"] = "O";
+    $_SESSION["current-turn"] = "X";
 }
 
 $tile_list = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
 $turn_count = 0;
 
-if (isset($_GET["a1"]) && !isset($_SESSION["a1"])) {
-    $_SESSION["a1"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["a2"]) && !isset($_SESSION["a2"])) {
-    $_SESSION["a2"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["a3"]) && !isset($_SESSION["a3"])) {
-    $_SESSION["a3"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["b1"]) && !isset($_SESSION["b1"])) {
-    $_SESSION["b1"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["b2"]) && !isset($_SESSION["b2"])) {
-    $_SESSION["b2"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["b3"]) && !isset($_SESSION["b3"])) {
-    $_SESSION["b3"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["c1"]) && !isset($_SESSION["c1"])) {
-    $_SESSION["c1"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["c2"]) && !isset($_SESSION["c2"])) {
-    $_SESSION["c2"] = $_SESSION["current-turn"];
-}
-if (isset($_GET["c3"]) && !isset($_SESSION["c3"])) {
-    $_SESSION["c3"] = $_SESSION["current-turn"];
-}
-
-if ($_SESSION["current-turn"] == "X") {
-    $_SESSION["current-turn"] = "O";
-} else {
-    $_SESSION["current-turn"] = "X";
-}
-
 foreach ($tile_list as $tile) {
+    if (isset($_GET[$tile]) && !isset($_SESSION[$tile])) {
+        $_SESSION[$tile] = $_SESSION["current-turn"];
+        $_SESSION["current-turn"] = $_SESSION["current-turn"] == "X" ? "O" : "X";
+    }
     if (isset($_SESSION[$tile])) {
         $turn_count++;
     }
