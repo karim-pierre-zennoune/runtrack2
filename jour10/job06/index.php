@@ -46,7 +46,7 @@ $fields = $result->fetch_fields();
         <thead>
             <tr>
                 <?php foreach ($fields as $field): ?>
-                    <th> <?= $field->name ?> </th>
+                    <th> <?= htmlspecialchars($field->name) ?> </th>
                 <?php endforeach; ?>
             </tr>
         </thead>
@@ -56,7 +56,7 @@ $fields = $result->fetch_fields();
             foreach ($result as $row): ?>
                 <tr>
                     <?php foreach ($row as $key => $value): ?>
-                        <td> <?= $value ?> </td>
+                        <td> <?= htmlspecialchars($value) ?> </td>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach; ?>

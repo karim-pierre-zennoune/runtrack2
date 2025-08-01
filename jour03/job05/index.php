@@ -8,35 +8,38 @@ Affichez ces résultats dans un tableau <table> html qui a comme <thead> “Voye
 
 
 
-<?php 
+<?php
+
+require_once("../../kpz_lib.php");
 
 $str = "On n'est pas le meilleur quand on le croit mais quand on le sait";
-$vowels = [ "a", "e", "i", "o", "u", "y"];
+$vowels = ["a", "e", "i", "o", "u", "y"];
 $dic = [
-"consonnes" => 0,
-"voyelles" => 0
+    "consonnes" => 0,
+    "voyelles" => 0
 ];
 
 $vowel_count = 0;
 $conso_count = 0;
 
-for ($i = 0; $i < strlen($str); $i++) {
-    if (in_array(strtolower($str[$i]), $vowels)) {
+for ($i = 0; $i < kpz_strlen($str); $i++) {
+    if (kpz_char_in_array(kpz_strtolower($str[$i]), $vowels)) {
         $dic["voyelles"]++;
-    }
-    else $dic["consonnes"]++;
+    } else
+        $dic["consonnes"]++;
 }
 ?>
 
-<table> 
-<tr>
-<th>Consonnes</th><th>Voyelles</th>
+<table>
+    <tr>
+        <th>Consonnes</th>
+        <th>Voyelles</th>
 
-</tr>
-<tr>
-    <td> <?= $dic["consonnes"] ?></td>  
-<td> <?= $dic["voyelles"] ?> </td>   
-</tr>
+    </tr>
+    <tr>
+        <td> <?= $dic["consonnes"] ?></td>
+        <td> <?= $dic["voyelles"] ?> </td>
+    </tr>
 
 
 </table>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+<?php require_once("../../kpz_lib.php"); ?>
+
 <?php
 if (isset($_GET["style"])): ?>
 
@@ -9,7 +11,7 @@ if (isset($_GET["style"])): ?>
 <?php endif; ?>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get ">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get ">
         <label for="style">Choose a style:</label>
         <select id="style" name="style">
             <option value="style1.css">style1</option>

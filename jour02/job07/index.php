@@ -10,7 +10,7 @@ Exemple si $hauteur = 5
 /________\
 
 -->
-<?php 
+<?php
 $hauteur = 5;
 
 for ($i = 0; $i < $hauteur; $i++):
@@ -19,15 +19,13 @@ for ($i = 0; $i < $hauteur; $i++):
     endfor;
     echo "/";
     for ($k = $i * 2; $k > 0; $k--):
-        if ($i === $hauteur -1):
+        if ($i === $hauteur - 1):
             echo "_";
         else:
             echo " ";
         endif;
-     endfor;
+    endfor;
     echo "\\ <br/>";
 
 endfor;
 ?>
-
-<!-- echo settype((string) $s); -->

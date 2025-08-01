@@ -4,10 +4,12 @@ Créez un algorithme qui parcourt et écrit cette chaine à l’envers.
 Ex. : redessop suon rap tnessinif edessop no'l euq sesohc seL -->
 
 <?php
-$str = "Les choses que l'on possède finissent par nous posséder.";
 
-for ($i = strlen($str) - 1; $i >= 0; $i--)
-{       
-    echo mb_substr($str, $i, 1, 'UTF-8');
+require_once("../../kpz_lib.php");
+
+$str = "Les choses que l'on possede finissent par nous posseder.";
+
+for ($i = kpz_strlen($str) - 1; $i >= 0; $i--) {
+    echo $str[$i];
 }
 ?>

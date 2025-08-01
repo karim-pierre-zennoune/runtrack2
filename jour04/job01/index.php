@@ -7,26 +7,29 @@ Vous pouvez ensuite afficher avec echo directement dans votre page par exemple :
 
 
 
+<?php require_once("../../kpz_lib.php"); ?>
+
+
 <!DOCTYPE HTML>
-<html>  
+<html>
+
 <body>
-<form action="index.php" method="get">
-a: <input type="text" name="a"><br>
-b: <input type="text" name="b"><br>
-c: <input type="text" name="c"><br>
-d: <input type="text" name="d"><br>
-e: <input type="text" name="e"><br>
-<input type="submit">
-</form>
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+        a: <input type="text" name="a"><br>
+        b: <input type="text" name="b"><br>
+        c: <input type="text" name="c"><br>
+        d: <input type="text" name="d"><br>
+        e: <input type="text" name="e"><br>
+        <input type="submit">
+    </form>
 
-<div>
-<?php 
-$len = count($_GET);
-echo "Le nombre d’argument GET envoyé est : $len ";
-?>
+    <div>
+        <?php
+        $len = kpz_count($_GET);
+        echo "Le nombre d’argument GET envoyé est : $len ";
+        ?>
 
-</div>
+    </div>
 </body>
+
 </html>
-
-

@@ -34,7 +34,7 @@ if (isset($_GET["deco"])) {
 
 <body>
     <?php if (isset($login)): ?>
-        <p> Bonjour <?= $login ?> !</p>
+        <p> Bonjour <?= htmlspecialchars($login) ?> !</p>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
             <input name="deco" type="submit" value="Déconnexion">

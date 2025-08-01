@@ -5,11 +5,13 @@ Après validation du formulaire :
 “C’est pas ma guerre”
 ● sinon afficher : “Votre pire cauchemar”. -->
 
+<?php require_once("../../kpz_lib.php"); ?>
+
 <!DOCTYPE HTML>
 <html>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         username: <input type="text" name="username"><br>
         password: <input type="text" name="password"><br>
         <input type="submit">
@@ -17,7 +19,7 @@ Après validation du formulaire :
 
     <div>
         <?php
-        $len = count($_POST);
+        $len = kpz_count($_POST);
         if ($len != 0 && isset($_POST["username"]) && isset($_POST["password"])) {
             if ($_POST["username"] === "John" && $_POST["password"] === "Rambo") {
                 echo "C’est pas ma guerre";

@@ -4,11 +4,13 @@ Après validation du formulaire :
 ● si la valeur entrée est un nombre pair, afficher “Nombre pair”,
 ● si c’est un nombre impair, afficher “Nombre impair”. -->
 
+<?php require_once("../../kpz_lib.php"); ?>
+
 <!DOCTYPE HTML>
 <html>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
         largeur: <input type="text" name="largeur"><br>
         hauteur: <input type="text" name="hauteur"><br>
         <input type="submit">
@@ -16,10 +18,10 @@ Après validation du formulaire :
 
     <div>
         <?php
-        $len = count($_GET);
+        $len = kpz_count($_GET);
         if (
             $len == 2 && isset($_GET["largeur"]) && isset($_GET["hauteur"])
-            && is_numeric($_GET["largeur"]) && is_numeric($_GET["hauteur"])
+            && kpz_is_integer($_GET["largeur"]) && kpz_is_integer($_GET["hauteur"])
         ) {
             $largeur = $_GET["largeur"];
             $hauteur = $_GET["hauteur"];

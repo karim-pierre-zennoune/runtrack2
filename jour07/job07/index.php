@@ -15,13 +15,14 @@ ex : Si $decalage vaut 1 alors “e” devient “f”. Si décalage vaut 3 alor
 ● “plateforme”, une fonction qui prend en paramètre “$str” : plateforme($str).
 Elle affiche “$str” en ajoutant un “_” aux mots finissant par “me”. -->
 
+<?php require_once("../../kpz_lib.php"); ?>
 
 <!DOCTYPE html>
 <html>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get ">
-        str <input type="text" name="str">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get ">
+        str <input type="text" name="str" autofocus>
         <br />
         fonction<select id="fonction" name="fonction">
             <option value="gras">gras</option>
@@ -37,17 +38,17 @@ Elle affiche “$str” en ajoutant un “_” aux mots finissant par “me”. 
         if (isset($_GET["fonction"]) && isset($_GET["str"])) {
             switch ($_GET["fonction"]) {
                 case "gras":
-                    echo gras($_GET["str"]);
+                    echo gras(kpz_htmlspecialchars($_GET["str"]));
                     break;
                 case "cesar":
-                    echo cesar($_GET["str"]);
+                    echo cesar(kpz_htmlspecialchars($_GET["str"]));
                     break;
                 case "plateforme":
-                    echo plateforme($_GET["str"]);
+                    echo plateforme(kpz_htmlspecialchars($_GET["str"]));
                     break;
                 case "none":
                 default:
-                    echo $_GET["str"];
+                    echo kpz_htmlspecialchars($_GET["str"]);
                     break;
             }
 
@@ -68,17 +69,17 @@ Elle affiche “$str” en ajoutant un “_” aux mots finissant par “me”. 
 
 function gras($str)
 {
-    $array = explode(" ", $str);
-    $newarray = array();
+    $array = kpz_explode(" ", $str);
+    $newarray = [];
 
     foreach ($array as $val) {
-        if ($val[0] >= "A" && $val[0] <= "Z") {
+        if (isset($val[0]) && $val[0] >= "A" && $val[0] <= "Z") {
             $newarray[] = "<b>" . $val . "</b>";
         } else {
             $newarray[] = $val;
         }
     }
-    return implode(" ", $newarray);
+    return kpz_implode(" ", $newarray);
 }
 
 
@@ -86,15 +87,16 @@ function cesar($str, $decalage = 2)
 {
 
     $alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    for ($i = 0; $i < strlen($str); $i++) {
+    for ($i = 0; $i < kpz_strlen($str); $i++) {
         if ($str[$i] >= "a" && $str[$i] <= "z") {
-            //a =  97
-            $str[$i] = $alphabet[(ord($str[$i]) - 97 + $decalage) % 26];
+            $index = kpz_index_of($str[$i], $alphabet);
+            $str[$i] = $alphabet[($index + $decalage) % 26];
         }
 
         if ($str[$i] >= "A" && $str[$i] <= "Z") {
             //A = 65
-            $str[$i] = strtoupper($alphabet[(ord($str[$i]) - 65 + $decalage) % 26]);
+            $index = kpz_index_of(kpz_strtolower($str[$i]), $alphabet);
+            $str[$i] = kpz_strtoupper($alphabet[($index + $decalage) % 26]);
         }
     }
     return $str;
@@ -103,11 +105,11 @@ function cesar($str, $decalage = 2)
 
 function plateforme($str)
 {
-    $array = explode(" ", $str);
-    $newarray = array();
+    $array = kpz_explode(" ", $str);
+    $newarray = [];
 
     foreach ($array as $val) {
-        $len = strlen($val);
+        $len = kpz_strlen($val);
 
         if ($len >= 2 && $val[$len - 1] == "e" && $val[$len - 2] == "m") {
             $newarray[] = $val . "_";
@@ -115,7 +117,7 @@ function plateforme($str)
             $newarray[] = $val;
         }
     }
-    return implode(" ", $newarray);
+    return kpz_implode(" ", $newarray);
 }
 
 

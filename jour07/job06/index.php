@@ -11,12 +11,12 @@ qu’elle doit la modifier de sorte à ce que :
 ● les “T” des “7”.
 Cela est valable que l’on crie ou non (majuscules et minuscules). -->
 
-
+<?php require_once("../../kpz_lib.php"); ?>
 
 <?php
 function leetSpeak($str)
 {
-    for ($i = 0; $i < strlen($str); $i++) {
+    for ($i = 0; $i < kpz_strlen($str); $i++) {
         switch ($str[$i]) {
             case "a":
             case "A":

@@ -1,10 +1,12 @@
+<?php require_once("../../kpz_lib.php"); ?>
+
 <?php
 
 function occurrences($str, $char)
 {
     $count = 0;
 
-    for ($i = 0; $i < strlen($str); $i++) {
+    for ($i = 0; $i < kpz_strlen($str); $i++) {
         if ($str[$i] == $char) {
             $count++;
         }

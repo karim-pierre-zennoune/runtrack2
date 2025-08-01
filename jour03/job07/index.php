@@ -6,12 +6,14 @@ Ex. : Ertaines choses changent, et d'autres ne changeront jamais.c -->
 
 <?php
 
+require_once("../../kpz_lib.php");
+
 $str = "Certaines choses changent, et d'autres ne changeront jamais.";
 
 
-$str = substr($str,1,strlen($str)-1) . $str[0];
-$str[0] = strtoupper($str[0]);
-$str[strlen($str)-1] = strtolower($str[strlen($str)-1]);
+$str = kpz_substr($str, 1, kpz_strlen($str) - 1) . $str[0];
+$str[0] = kpz_strtoupper($str[0]);
+$str[kpz_strlen($str) - 1] = kpz_strtolower($str[kpz_strlen($str) - 1]);
 
 echo $str;
 

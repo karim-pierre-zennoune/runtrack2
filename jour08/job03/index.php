@@ -35,7 +35,7 @@ if (
         <?php
         if (isset($_SESSION["users"])):
             foreach ($_SESSION["users"] as $prenom): ?>
-                <li> <?= $prenom ?> </li>
+                <li> <?= htmlspecialchars($prenom) ?> </li>
                 <?php
             endforeach;
         endif; ?>

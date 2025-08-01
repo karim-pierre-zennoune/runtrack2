@@ -5,13 +5,13 @@ champs <input> de type “text” et un <input> de type “submit” pour l’en
 Vous pouvez ensuite afficher avec echo directement dans votre page par exemple :
 “Le nombre d’argument POST envoyé est : “ -->
 
-
+<?php require_once("../../kpz_lib.php"); ?>
 
 <!DOCTYPE HTML>
 <html>
 
 <body>
-    <form action="index.php" method="post">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         a: <input type="text" name="a"><br>
         b: <input type="text" name="b"><br>
         c: <input type="text" name="c"><br>
@@ -22,7 +22,7 @@ Vous pouvez ensuite afficher avec echo directement dans votre page par exemple :
 
     <div>
         <?php
-        $len = count($_POST);
+        $len = kpz_count($_POST);
         echo "Le nombre d’argument POST envoyé est : $len ";
         ?>
 

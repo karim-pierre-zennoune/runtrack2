@@ -2,6 +2,7 @@
 arguments $_GET et les valeurs associées.
 Il doit y avoir deux colonnes : argument et valeur. -->
 
+<?php require_once("../../kpz_lib.php"); ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -28,7 +29,7 @@ Il doit y avoir deux colonnes : argument et valeur. -->
 
 
 <body>
-    <form action="index.php" method="get">
+    <form action="<?php echo kpz_htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
         a: <input type="text" name="a"><br>
         b: <input type="text" name="b"><br>
         c: <input type="text" name="c"><br>
@@ -40,7 +41,7 @@ Il doit y avoir deux colonnes : argument et valeur. -->
     <div>
 
         <?php
-        $len = count($_GET);
+        $len = kpz_count($_GET);
         if ($len != 0) {
             ?>
 

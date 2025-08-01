@@ -4,23 +4,13 @@ Créez un algorithme qui parcourt cette chaîne et affiche uniquement les voyell
 
 <?php
 
-function kpz_char_in_array($char, $array)
-{
-    $i = 0;
-    while (isset($array[$i])) {
-        if ($char == $array[$i]) {
-            return true;
-        }
-        $i++;
-    }
-    return false;
-}
+require_once("../../kpz_lib.php");
 
 $str = "I'm sorry Dave I'm afraid I can't do that";
 $vowels = ["a", "e", "i", "o", "u", "y"];
 
-for ($i = 0; $i < strlen($str); $i++) {
-    if (kpz_char_in_array(strtolower($str[$i]), $vowels)) {
+for ($i = 0; $i < kpz_strlen($str); $i++) {
+    if (kpz_char_in_array(kpz_strtolower($str[$i]), $vowels)) {
         echo $str[$i];
     }
 }
